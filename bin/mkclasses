@@ -1,0 +1,5 @@
+#!/bin/bash
+
+dbicdump -o dump_directory=./lib \
+  -o components='["InflateColumn::DateTime"]' \
+  ClaphamTechPress::Schema dbi:SQLite:./clapham.db

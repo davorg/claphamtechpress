@@ -1,0 +1,21 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+use FindBin '$RealBin';
+use lib "$RealBin/lib";
+
+use Template;
+
+use ClaphamTechPress::Schema;
+
+my $tt = Template->new(
+  INCLUDE_PATH => 'in',
+  OUTPUT_PATH  => 'docs',
+);
+
+my @books = ClaphamTechPress::Schema->get_schema->resultset('Book')->all;
+
+$tt->process('index.tt', { books => \@books }, 'index.html')
+  or die $tt->error;

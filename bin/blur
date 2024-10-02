@@ -1,0 +1,41 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+use feature 'say';
+
+use Imager;
+use File::Basename;
+use Getopt::Long;
+
+my %opts;
+
+GetOptions(\%opts, 'width=i', 'height=i');
+$opts{width}  ||= 650;
+$opts{height} ||= 350;
+
+my $in = shift || die "Usage: $0 image_file\n";
+
+my ($name, $path, $ext) = fileparse($in, '.png', '.jpg');
+my $type = $ext =~ s/^\.//s;
+
+my $img = Imager->new(file => $in);
+
+my $background = $img->copy;
+
+$background = $background->scale(xpixels => $opts{width});
+my $height = $background->getheight;
+$background = $background->crop(
+    top    => ($height / 2) - ($opts{height} / 2),
+    bottom => ($height / 2) + ($opts{height} / 2),
+);
+
+$background->filter(type => 'gaussian', stddev => 15);
+
+$img = $img->scale(ypixels => $opts{height});
+
+my $width = $img->getwidth;
+
+$background->compose(src => $img, left => ($opts{width} / 2) - ($width / 2));
+
+$background->write(file => "${name}_wide$ext", type => 'png');

@@ -114,70 +114,26 @@
         <h2 class="text-center mt-0">Our books</h2>
         <hr class="divider my-4" />
         <div class="row no-gutters">
+[% FOR book IN books.sort('pubdate').reverse -%]
           <div class="col-lg-4 col-sm-6 portfolio-box">
-            <img class="img-fluid" src="assets/img/portfolio/fullsize/down-with-work_wide.png" alt="Down With Work" />
+            <img class="img-fluid" src="assets/img/portfolio/fullsize/[% book.image %]_wide.png" alt="[% book.title %]" />
             <div class="portfolio-box-caption">
-              <div class="project-category text-50">Career</div>
-              <div class="project-name">Down With Work</div>
-              <div class="project-author">Will Sowman</div>
+              <div class="project-category text-50">[% book.topic %]</div>
+              <div class="project-name">[% book.title %]</div>
+              <div class="project-author">[% book.author.name %]</div>
+[%   IF book.amazon_asin -%]
+              <div class="project-buy">Amazon: <a href="https://www.amazon.com/dp/[% book.amazon_asin %]" target="_blank" rel="noopener noreferrer">US</a> /
+                <a href="https://www.amazon.co.uk/dp/[% book.amazon_asin %]" target="_blank" rel="noopener noreferrer">UK</a></div>
+[%   END -%]
+[%   IF book.leanpub_slug -%]
+              <div class="project-buy">Leanpub: <a href="https://leanpub.com/[% book.leanpub_slug %]" target="_blank" rel="noopener noreferrer">Buy</a></div>
+[%   END -%]
+[%   IF book.coming_soon -%]
               <div class="project-category"><b><i>Coming soon!</i></b></div>
+[%   END -%]
             </div>
           </div>
-          <div class="col-lg-4 col-sm-6 portfolio-box">
-            <img class="img-fluid" src="assets/img/portfolio/fullsize/prompt-engineering-everyone_wide.png" alt="Prompt Engineering for Everyone" />
-            <div class="portfolio-box-caption">
-              <div class="project-category text-50">AI</div>
-              <div class="project-name">Prompt Engineering for Everyone</div>
-              <div class="project-author">Will Sowman</div>
-              <div class="project-buy">Amazon: <a href="https://www.amazon.com/dp/B0C46XPQ8R" target="_blank" rel="noopener noreferrer">US</a> /
-                <a href="https://www.amazon.co.uk/dp/B0C46XPQ8R" target="_blank" rel="noopener noreferrer">UK</a></div>
-              <div class="project-buy">Leanpub: <a href="https://leanpub.com/promptengineeringforeveryone" target="_blank" rel="noopener noreferrer">Buy</a></div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-sm-6 portfolio-box">
-            <img class="img-fluid" src="assets/img/portfolio/fullsize/commuting-to-freedom_wide.png" alt="From Commuting to Freedom" />
-            <div class="portfolio-box-caption">
-              <div class="project-category text-50">Career</div>
-              <div class="project-name">From Commuting to Freedom</div>
-              <div class="project-author">Will Sowman</div>
-              <div class="project-buy">Amazon: <a href="https://www.amazon.com/dp/B0C43V25XW" target="_blank" rel="noopener noreferrer">US</a> /
-                <a href="https://www.amazon.co.uk/dp/B0C43V25XW" target="_blank" rel="noopener noreferrer">UK</a></div>
-              <div class="project-buy">Leanpub: <a href="https://leanpub.com/fromcommutingtofreedom" target="_blank" rel="noopener noreferrer">Buy</a></div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-sm-6 portfolio-box">
-            <img class="img-fluid" src="assets/img/portfolio/fullsize/github-actions_wide.png" alt="GitHub Actions Essentials" />
-            <div class="portfolio-box-caption">
-              <div class="project-category text-50">DevOps</div>
-              <div class="project-name">GitHub Actions Essentials</div>
-              <div class="project-author">Dave Cross</div>
-              <div class="project-buy">Amazon: <a href="https://www.amazon.com/dp/B0C2D875YG" target="_blank" rel="noopener noreferrer">US</a> /
-                <a href="https://www.amazon.co.uk/dp/B0C2D875YG" target="_blank" rel="noopener noreferrer">UK</a></div>
-              <div class="project-buy">Leanpub: <a href="https://leanpub.com/githubactionsessentials" target="_blank" rel="noopener noreferrer">Buy</a></div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-sm-6 portfolio-box">
-            <img class="img-fluid" src="assets/img/portfolio/fullsize/the-best-of-perl-hacks_wide.png" alt="The Best of Perl Hacks" />
-            <div class="portfolio-box-caption">
-              <div class="project-category text-50">Development</div>
-              <div class="project-name">The Best of Perl Hacks</div>
-              <div class="project-author">Dave Cross</div>
-              <div class="project-buy">Amazon: <a href="https://www.amazon.com/dp/B086VK6TDH" target="_blank" rel="noopener noreferrer">US</a> /
-                <a href="https://www.amazon.co.uk/dp/B086VK6TDH" target="_blank" rel="noopener noreferrer">UK</a></div>
-              <div class="project-buy">Leanpub: <a href="https://leanpub.com/thebestofperlhacks" target="_blank" rel="noopener noreferrer">Buy</a></div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-sm-6 portfolio-box">
-            <img class="img-fluid" src="assets/img/portfolio/fullsize/perl-taster_wide.png" alt="Perl Taster" />
-            <div class="portfolio-box-caption">
-              <div class="project-category text-50">Development</div>
-              <div class="project-name">Perl Taster</div>
-              <div class="project-author">Dave Cross</div>
-              <div class="project-buy">Amazon: <a href="https://www.amazon.com/dp/B077MB1LH1" target="_blank" rel="noopener noreferrer">US</a> /
-                <a href="https://www.amazon.co.uk/dp/B077MB1LH1" target="_blank" rel="noopener noreferrer">UK</a></div>
-              <div class="project-buy">Leanpub: <a href="https://leanpub.com/perl-taster" target="_blank" rel="noopener noreferrer">Buy</a></div>
-            </div>
-          </div>
+[% END -%]
         </div>
       </div>
     </div>
