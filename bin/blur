@@ -38,4 +38,4 @@ my $width = $img->getwidth;
 
 $background->compose(src => $img, left => ($opts{width} / 2) - ($width / 2));
 
-$background->write(file => "${name}_wide$ext", type => 'png');
+$background->write(file => "${name}_wide.$ext", type => 'png');
