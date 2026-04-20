@@ -10167,3 +10167,9 @@ header.masthead h1 {
 .text-white-75 {
   color: rgba(255, 255, 255, 0.75);
 }
+
+.footer-logo {
+  border: solid 1px black;
+  width: 250px;
+  margin-bottom: 25px;
+}
