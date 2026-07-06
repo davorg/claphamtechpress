@@ -4,18 +4,46 @@ use strict;
 use warnings;
 
 use FindBin '$RealBin';
-use lib "$RealBin/lib";
+use File::Path 'make_path';
+use lib "$RealBin/../lib";
 
 use Template;
 
 use ClaphamTechPress::Schema;
+
+my $site_url = 'https://claphamtechpress.com';
 
 my $tt = Template->new(
   INCLUDE_PATH => 'in',
   OUTPUT_PATH  => 'docs',
 );
 
-my @books = ClaphamTechPress::Schema->get_schema->resultset('Book')->all;
+my @books = ClaphamTechPress::Schema->get_schema->resultset('Book')->search(
+  { is_live => 1 },
+  { order_by => { -desc => 'pubdate' } },
+)->all;
 
-$tt->process('index.tt', { books => \@books }, 'index.html')
+$tt->process('index.tt', { books => \@books, site_url => $site_url }, 'index.html')
   or die $tt->error;
+
+for my $book (@books) {
+  make_path("docs/books/" . $book->slug);
+
+  my $has_blurb = $book->blurb && $book->blurb ne 'xxx';
+  my $book_description = $has_blurb
+    ? $book->blurb
+    : $book->subtitle || $book->title . ' by ' . $book->author->name;
+
+  $tt->process(
+    'book.tt',
+    {
+      book             => $book,
+      book_description => $book_description,
+      book_image_url   => $site_url . '/assets/img/portfolio/fullsize/' . $book->image . '_wide.png',
+      book_url         => $site_url . '/books/' . $book->slug . '/',
+      has_blurb        => $has_blurb,
+      site_url         => $site_url,
+    },
+    'books/' . $book->slug . '/index.html',
+  ) or die $tt->error;
+}

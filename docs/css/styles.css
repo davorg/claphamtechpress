@@ -10164,6 +10164,89 @@ header.masthead h1 {
   color: white;
 }
 
+.book-detail {
+  padding-top: 10rem;
+}
+
+body.book-page #mainNav {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  background-color: #fff;
+}
+
+body.book-page #mainNav .navbar-brand,
+body.book-page #mainNav .navbar-brand:hover,
+body.book-page #mainNav .navbar-nav .nav-item .nav-link {
+  color: #212529;
+}
+
+body.book-page #mainNav .navbar-nav .nav-item .nav-link:hover {
+  color: #f4623a;
+}
+
+.book-cover {
+  max-height: 640px;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.18);
+}
+
+.book-topic {
+  color: #f4623a;
+  font-family: "Merriweather Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.book-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.book-subtitle {
+  color: #6c757d;
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.book-author {
+  font-family: "Merriweather Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.book-status {
+  color: #f4623a;
+  font-family: "Merriweather Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+
+.book-blurb {
+  color: #495057;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.book-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.book-author-section h2,
+.book-more h2 {
+  text-align: center;
+}
+
+@media (min-width: 992px) {
+  .book-title {
+    font-size: 3.25rem;
+  }
+}
+
 .text-white-75 {
   color: rgba(255, 255, 255, 0.75);
 }

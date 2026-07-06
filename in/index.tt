@@ -14,6 +14,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Clapham Technical Press publishes practical technical books and helps experts turn their knowledge into ebooks." />
     <meta name="author" content="" />
+    <meta property="og:title" content="Clapham Technical Press" />
+    <meta property="og:description" content="Clapham Technical Press publishes practical technical books and helps experts turn their knowledge into ebooks." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="[% site_url %]/" />
+    <meta property="og:image" content="[% site_url %]/assets/img/bg-masthead.jpg" />
+    <meta property="og:image:alt" content="Clapham Technical Press" />
+    <meta property="og:site_name" content="Clapham Technical Press" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Clapham Technical Press" />
+    <meta name="twitter:description" content="Clapham Technical Press publishes practical technical books and helps experts turn their knowledge into ebooks." />
+    <meta name="twitter:image" content="[% site_url %]/assets/img/bg-masthead.jpg" />
     <title>Clapham Technical Press - Practical technical books and ebooks</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
@@ -117,22 +128,19 @@
         <div class="row no-gutters">
 [% FOR book IN books.sort('pubdate').reverse -%]
           <div class="col-lg-4 col-sm-6 portfolio-box">
-            <img class="img-fluid" src="assets/img/portfolio/fullsize/[% book.image %]_wide.png" alt="[% book.title %]" />
-            <div class="portfolio-box-caption">
-              <div class="project-category text-50">[% book.topic %]</div>
-              <div class="project-name">[% book.title %]</div>
-              <div class="project-author">[% book.author.name %]</div>
-[%   IF book.amazon_asin -%]
-              <div class="project-buy">Amazon: <a href="https://www.amazon.com/dp/[% book.amazon_asin %]" target="_blank" rel="noopener noreferrer">US</a> /
-                <a href="https://www.amazon.co.uk/dp/[% book.amazon_asin %]" target="_blank" rel="noopener noreferrer">UK</a></div>
-[%   END -%]
-[%   IF book.leanpub_slug -%]
-              <div class="project-buy">Leanpub: <a href="https://leanpub.com/[% book.leanpub_slug %]" target="_blank" rel="noopener noreferrer">Buy</a></div>
-[%   END -%]
+            <a href="books/[% book.slug %]/">
+              <img class="img-fluid" src="assets/img/portfolio/fullsize/[% book.image %]_wide.png" alt="[% book.title %]" />
+              <div class="portfolio-box-caption">
+                <div class="project-category text-50">[% book.topic %]</div>
+                <div class="project-name">[% book.title %]</div>
+                <div class="project-author">[% book.author.name %]</div>
 [%   IF book.coming_soon -%]
-              <div class="project-category"><b><i>Coming soon!</i></b></div>
+                <div class="project-category"><b><i>Coming soon!</i></b></div>
+[%   ELSE -%]
+                <div class="project-buy">View details</div>
 [%   END -%]
-            </div>
+              </div>
+            </a>
           </div>
 [% END -%]
         </div>
@@ -170,7 +178,9 @@
     </section>
     <!-- Footer-->
     <footer class="bg-light py-5">
-      <div class="container"><div class="small text-center text-muted">Copyright © 2024 - Magnum Solutions Ltd</div></div>
+      <div class="container"><div class="small text-center text-muted"><img class="footer-logo" src="/assets/img/logo-800-white.png" alt="Clapham Technical Press"></div></div>
+      <div class="container"><div class="small text-center text-muted">Copyright &copy; 2026 - Magnum Solutions Ltd</div></div>
+      <div class="container"><div class="small text-center text-muted">Clapham Technical Press is a trading name of Magnum Solutions Ltd</div></div>
     </footer>
     <!-- Bootstrap core JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
