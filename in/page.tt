@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G9Y7TYL5F7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-G9Y7TYL5F7');
+    </script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="[% meta_description | html %]" />
+[% IF meta_author -%]
+    <meta name="author" content="[% meta_author | html %]" />
+[% ELSE -%]
+    <meta name="author" content="" />
+[% END -%]
+    <meta property="og:title" content="[% og_title | html %]" />
+    <meta property="og:description" content="[% og_description | html %]" />
+    <meta property="og:type" content="[% og_type | html %]" />
+    <meta property="og:url" content="[% og_url | html %]" />
+    <meta property="og:image" content="[% og_image | html %]" />
+    <meta property="og:image:alt" content="[% og_image_alt | html %]" />
+    <meta property="og:site_name" content="Clapham Technical Press" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="[% og_title | html %]" />
+    <meta name="twitter:description" content="[% og_description | html %]" />
+    <meta name="twitter:image" content="[% og_image | html %]" />
+[% IF json_ld -%]
+    <script type="application/ld+json">[% json_ld %]</script>
+[% END -%]
+    <title>[% page_title | html %]</title>
+    <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico" />
+    <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
+    <link href="/css/styles.css" rel="stylesheet" />
+  </head>
+  <body id="page-top"[% IF body_class %] class="[% body_class | html %]"[% END %]>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3[% IF nav_class %] [% nav_class | html %][% END %]" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand[% IF nav_link_class %] [% nav_link_class | html %][% END %]" href="[% brand_href | html %]">Clapham Technical Press</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto my-2 my-lg-0">
+            <li class="nav-item"><a class="nav-link[% IF nav_link_class %] [% nav_link_class | html %][% END %]" href="[% nav_about_href | html %]">About</a></li>
+            <li class="nav-item"><a class="nav-link[% IF nav_link_class %] [% nav_link_class | html %][% END %]" href="[% nav_authors_href | html %]">For Authors</a></li>
+            <li class="nav-item"><a class="nav-link[% IF nav_link_class %] [% nav_link_class | html %][% END %]" href="[% nav_books_href | html %]">Books</a></li>
+            <li class="nav-item"><a class="nav-link[% IF nav_link_class %] [% nav_link_class | html %][% END %]" href="[% nav_contact_href | html %]">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+[% content %]
+    <footer class="bg-light py-5">
+      <div class="container"><div class="small text-center text-muted"><img class="footer-logo" src="/assets/img/logo-800-white.png" alt="Clapham Technical Press"></div></div>
+      <div class="container"><div class="small text-center text-muted">Copyright &copy; 2026 - Magnum Solutions Ltd</div></div>
+      <div class="container"><div class="small text-center text-muted">Clapham Technical Press is a trading name of Magnum Solutions Ltd</div></div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <script src="/js/scripts.js"></script>
+  </body>
+</html>
