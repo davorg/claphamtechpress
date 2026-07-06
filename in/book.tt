@@ -25,6 +25,7 @@
     <meta name="twitter:title" content="[% book.title | html %] - Clapham Technical Press" />
     <meta name="twitter:description" content="[% book_description | html %]" />
     <meta name="twitter:image" content="[% book_image_url | html %]" />
+    <script type="application/ld+json">[% book_json_ld %]</script>
     <title>[% book.title | html %] - Clapham Technical Press</title>
     <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico" />
     <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
