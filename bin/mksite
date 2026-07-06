@@ -27,6 +27,11 @@ my @books = ClaphamTechPress::Schema->get_schema->resultset('Book')->search(
 $tt->process('index.tt', { books => \@books, site_url => $site_url }, 'index.html')
   or die $tt->error;
 
+make_path('docs/books');
+
+$tt->process('books.tt', { site_url => $site_url }, 'books/index.html')
+  or die $tt->error;
+
 for my $book (@books) {
   make_path("docs/books/" . $book->slug);
 
