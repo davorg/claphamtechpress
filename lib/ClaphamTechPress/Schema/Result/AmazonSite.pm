@@ -13,7 +13,10 @@ ClaphamTechPress::Schema::Result::AmazonSite
 use strict;
 use warnings;
 
-use base 'DBIx::Class::Core';
+use Moose;
+use MooseX::NonMoose;
+use MooseX::MarkAsMethods autoclean => 1;
+extends 'DBIx::Class::Core';
 
 =head1 COMPONENTS LOADED
 
@@ -97,8 +100,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07051 @ 2023-09-25 16:30:21
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:1sVjkHWezaAuJwYqcQnkNg
+# Created by DBIx::Class::Schema::Loader v0.07053 @ 2026-07-06 17:06:18
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:J3mTW3DjaOYfm1B5z/X5AA
 
 sub uri_for_asin {
   my $self = shift;
@@ -108,4 +111,9 @@ sub uri_for_asin {
 }
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
+1;
+
+
+# You can replace this text with custom code or comments, and it will be preserved on regeneration
+__PACKAGE__->meta->make_immutable;
 1;
