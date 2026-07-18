@@ -228,15 +228,17 @@ sub coming_soon($self) {
   return $pubdate > $today;
 }
 
+sub has_blurb($self) {
+  return $self->blurb && $self->blurb ne 'xxx';
+}
+
 sub og_title($self)       { return $self->title . ' - ' . $self->og_site_name }
 sub og_author($self)      { return $self->author->name }
 sub og_type($self)        { return 'book' }
 sub og_image_alt($self)   { return $self->title }
 
 sub og_description($self) {
-  my $has_blurb = $self->blurb && $self->blurb ne 'xxx';
-
-  my $book_description = $has_blurb
+  my $book_description = $self->has_blurb
     ? $self->blurb
     : $self->subtitle || $self->title . ' by ' . $self->author->name;
 

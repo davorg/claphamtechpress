@@ -11,6 +11,8 @@
      label => 'Contact',
      link  => '/#contact',
    }]
+   nav_class = 'navbar-scrolled'
+   brand_href = '/'
 -%]
 <!DOCTYPE html>
 <html lang="en">

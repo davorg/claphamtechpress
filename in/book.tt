@@ -2,25 +2,6 @@
   object = book
   json_ld = book_json_ld
   body_class = 'book-page'
-  nav_class = 'navbar-scrolled'
-  brand_href = '/'
-  nav = [{
-    label => 'About',
-    link  => '/#about',
-  }, {
-    label => 'For authors',
-    link  => '/#services',
-  }, {
-    label => 'Books',
-    link  => '/#portfolio',
-  }, {
-    label => 'Contact',
-    link  => '/#contact',
-  }]
-  nav_about_href = '/#about'
-  nav_authors_href = '/#services'
-  nav_books_href = '/#portfolio'
-  nav_contact_href = '/#contact'
 -%]
     <section class="page-section book-detail">
       <div class="container">
@@ -38,7 +19,7 @@
 [% IF book.coming_soon -%]
             <p class="book-status">Coming soon</p>
 [% END -%]
-[% IF has_blurb -%]
+[% IF book.has_blurb -%]
             <p class="book-blurb">[% book.blurb | html %]</p>
 [% ELSE -%]
             <p class="book-blurb">More details about this title will be available soon.</p>
