@@ -48,10 +48,10 @@
     <meta name="twitter:title" content="[% og_title | html %]" />
     <meta name="twitter:description" content="[% og_description | html %]" />
     <meta name="twitter:image" content="[% og_image | html %]" />
-[% END -%]
-[% IF json_ld -%]
-    <script type="application/ld+json">[% json_ld %]</script>
-[% END -%]
+[% END %]
+[% IF object;
+     object.json_ld_wrapped;
+   END -%]
 [% IF NOT object -%]
     <title>[% page_title | html %]</title>
 [% END -%]

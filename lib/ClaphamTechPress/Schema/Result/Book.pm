@@ -217,10 +217,25 @@ use feature 'signatures';
 
 use DateTime;
 
-with 'MooX::Role::SEOTags', 'ClaphamTechPress::Role::Defaults';
+with 'MooX::Role::SEOTags', 'MooX::Role::JSON_LD',
+     'ClaphamTechPress::Role::Defaults';
 
 my $img_path = '/img/portfolio/fullsize/';
 my $img_suff = '_wide.png';
+
+sub json_ld_type { 'Book' }
+
+sub json_ld_fields {[
+  { bookFormat => sub { 'https://schema.org/EBook ' } },
+  { datePublished => sub { $_[0]->pubdate->ymd } },
+  { author => sub { $_[0]->author->json_ld_data } },
+  { url => 'og_url' },
+  { inLanguage => sub { 'en' } },
+  { publisher => sub { { url => $_[0]->domain . '/', '@type' => 'Organisation', name => $_[0]->og_site_name } } },
+  { description => 'og_description' },
+  { name => 'title' },
+  { image => sub { $_[0]->domain . "/$img_path" . $_[0]->image . '.png' } },
+]}
 
 sub coming_soon($self) {
   my $pubdate = $self->pubdate;

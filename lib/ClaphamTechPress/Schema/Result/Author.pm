@@ -115,6 +115,13 @@ __PACKAGE__->has_many(
 # Created by DBIx::Class::Schema::Loader v0.07053 @ 2026-07-06 17:06:18
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:S4u1Z1K3emcohvRqGd9AOw
 
+with 'MooX::Role::JSON_LD';
+
+sub json_ld_type { 'Person' };
+
+sub json_ld_fields {[
+  'name', { url => 'website' }
+]}
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
 __PACKAGE__->meta->make_immutable;
