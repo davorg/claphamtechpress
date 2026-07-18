@@ -213,19 +213,49 @@ __PACKAGE__->belongs_to(
 # Created by DBIx::Class::Schema::Loader v0.07053 @ 2026-07-06 17:06:18
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:RA7jPZUXLjBawSXxkK6l+A
 
+use feature 'signatures';
+
 use DateTime;
 
-sub coming_soon {
-  my $self = shift;
+with 'MooX::Role::SEOTags', 'ClaphamTechPress::Role::Defaults';
+
+my $img_path = '/img/portfolio/fullsize/';
+my $img_suff = '_wide.png';
+
+sub coming_soon($self) {
   my $pubdate = $self->pubdate;
   my $today = DateTime->today;
   return $pubdate > $today;
 }
 
+sub og_title($self)       { return $self->title . ' - ' . $self->og_site_name }
+sub og_author($self)      { return $self->author->name }
+sub og_type($self)        { return 'book' }
+sub og_image_alt($self)   { return $self->title }
 
-# You can replace this text with custom code or comments, and it will be preserved on regeneration
-1;
+sub og_description($self) {
+  my $has_blurb = $self->blurb && $self->blurb ne 'xxx';
 
+  my $book_description = $has_blurb
+    ? $self->blurb
+    : $self->subtitle || $self->title . ' by ' . $self->author->name;
+
+  $book_description =~ s/"/&quot;/g; # hack
+
+  return $book_description;
+}
+
+sub url_path($self) {
+  return '/books/' . $self->slug . '/';
+}
+
+sub og_url($self) {
+  return $self->domain . $self->url_path;
+}
+
+sub og_image($self) {
+  return $self->domain . "/$img_path" . $self->image . $img_suff;
+}
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
 __PACKAGE__->meta->make_immutable;

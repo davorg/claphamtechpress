@@ -1,17 +1,22 @@
 [% WRAPPER page.tt
-  page_title = book.title _ ' - Clapham Technical Press'
-  meta_description = book_description
-  meta_author = book.author.name
-  og_title = book.title _ ' - Clapham Technical Press'
-  og_description = book_description
-  og_type = 'book'
-  og_url = book_url
-  og_image = book_image_url
-  og_image_alt = book.title _ ' cover'
+  object = book
   json_ld = book_json_ld
   body_class = 'book-page'
   nav_class = 'navbar-scrolled'
   brand_href = '/'
+  nav = [{
+    label => 'About',
+    link  => '/#about',
+  }, {
+    label => 'For authors',
+    link  => '/#services',
+  }, {
+    label => 'Books',
+    link  => '/#portfolio',
+  }, {
+    label => 'Contact',
+    link  => '/#contact',
+  }]
   nav_about_href = '/#about'
   nav_authors_href = '/#services'
   nav_books_href = '/#portfolio'

@@ -1,3 +1,17 @@
+[% nav = [{
+     label => 'About',
+     link  => '/#about',
+   }, {
+     label => 'For authors',
+     link  => '/#services',
+   }, {
+     label => 'Books',
+     link  => '/#portfolio',
+   }, {
+     label => 'Contact',
+     link  => '/#contact',
+   }]
+-%]
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,12 +26,15 @@
     </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="[% meta_description | html %]" />
-[% IF meta_author -%]
-    <meta name="author" content="[% meta_author | html %]" />
+[% IF object -%]
+[%   object.tags -%]
 [% ELSE -%]
+    <meta name="description" content="[% meta_description | html %]" />
+[%   IF meta_author -%]
+    <meta name="author" content="[% meta_author | html %]" />
+[%   ELSE -%]
     <meta name="author" content="" />
-[% END -%]
+[%   END -%]
     <meta property="og:title" content="[% og_title | html %]" />
     <meta property="og:description" content="[% og_description | html %]" />
     <meta property="og:type" content="[% og_type | html %]" />
@@ -29,10 +46,13 @@
     <meta name="twitter:title" content="[% og_title | html %]" />
     <meta name="twitter:description" content="[% og_description | html %]" />
     <meta name="twitter:image" content="[% og_image | html %]" />
+[% END -%]
 [% IF json_ld -%]
     <script type="application/ld+json">[% json_ld %]</script>
 [% END -%]
+[% IF NOT object -%]
     <title>[% page_title | html %]</title>
+[% END -%]
     <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico" />
     <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
@@ -45,14 +65,15 @@
       <div class="container">
         <a class="navbar-brand[% IF nav_link_class %] [% nav_link_class | html %][% END %]" href="[% brand_href | html %]">Clapham Technical Press</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+[% IF nav.size -%]
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto my-2 my-lg-0">
-            <li class="nav-item"><a class="nav-link[% IF nav_link_class %] [% nav_link_class | html %][% END %]" href="[% nav_about_href | html %]">About</a></li>
-            <li class="nav-item"><a class="nav-link[% IF nav_link_class %] [% nav_link_class | html %][% END %]" href="[% nav_authors_href | html %]">For Authors</a></li>
-            <li class="nav-item"><a class="nav-link[% IF nav_link_class %] [% nav_link_class | html %][% END %]" href="[% nav_books_href | html %]">Books</a></li>
-            <li class="nav-item"><a class="nav-link[% IF nav_link_class %] [% nav_link_class | html %][% END %]" href="[% nav_contact_href | html %]">Contact</a></li>
+[%   FOREACH item IN nav -%]
+            <li class="nav-item"><a class="nav-link[% IF nav_link_class %] [% nav_link_class | html %][% END %]" href="[% item.link | html %]">[% item.label %]</a></li>
+[%   END -%]
           </ul>
         </div>
+[% END -%]
       </div>
     </nav>
 [% content %]
