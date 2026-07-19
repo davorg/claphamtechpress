@@ -32,7 +32,7 @@ $tt->process('books.tt', { }, 'books/index.html')
   or die $tt->error;
 
 for my $book (@books) {
-  my $path = 'docs/books/' . $book->slug;
+  my $path = 'books/' . $book->slug;
   make_path($path);
 
   $tt->process( 'book.tt', { book => $book, }, "$path/index.html",
