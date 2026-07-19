@@ -1,19 +1,6 @@
-[% SET site_description = 'Clapham Technical Press publishes practical technical books and helps experts turn their knowledge into ebooks.' -%]
 [% WRAPPER page.tt
   object = page
-  page_title = 'Clapham Technical Press - Practical technical books and ebooks'
-  meta_description = site_description
-  og_title = 'Clapham Technical Press'
-  og_description = site_description
-  og_type = 'website'
-  og_url = site_url _ '/'
-  og_image = site_url _ '/assets/img/bg-masthead.jpg'
-  og_image_alt = 'Clapham Technical Press'
   brand_href = '#page-top'
-  nav_about_href = '#about'
-  nav_authors_href = '#services'
-  nav_books_href = '#portfolio'
-  nav_contact_href = '#contact'
   nav_link_class = 'js-scroll-trigger'
 -%]
     <!-- Masthead-->
