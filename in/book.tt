@@ -1,6 +1,5 @@
 [% WRAPPER page.tt
   object = book
-  json_ld = book_json_ld
   body_class = 'book-page'
 -%]
     <section class="page-section book-detail">

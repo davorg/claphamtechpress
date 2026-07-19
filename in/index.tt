@@ -1,5 +1,6 @@
 [% SET site_description = 'Clapham Technical Press publishes practical technical books and helps experts turn their knowledge into ebooks.' -%]
 [% WRAPPER page.tt
+  object = page
   page_title = 'Clapham Technical Press - Practical technical books and ebooks'
   meta_description = site_description
   og_title = 'Clapham Technical Press'

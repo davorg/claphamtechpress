@@ -15,7 +15,7 @@ sub og_url_path ($self) {
 }
 
 sub og_url ($self) {
-  return $self->domain_url . $self->og_url_path;
+  return $self->domain . $self->og_url_path;
 } 
 
 sub og_site_name ($self) {
@@ -23,7 +23,7 @@ sub og_site_name ($self) {
 }
 
 sub og_title ($self) {
-  return 'Clapham Techical Press';
+  return 'Clapham Technical Press';
 }
 
 sub og_description ($self) {
@@ -31,13 +31,13 @@ sub og_description ($self) {
 }
 
 sub og_image ($self) {
-  my $url = $self->domain_url;
+  my $url = $self->domain;
   my $image;
 
   if ($self->can('image') and $self->image) {
     $image = $self->image;
   } else {
-    $image = '/images/booker2024-short.jpg';
+    $image = '/assets/img/bg-masthead.jpg';
   }
 
   if ($image !~ m|^https?://|) {

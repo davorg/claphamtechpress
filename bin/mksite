@@ -11,8 +11,7 @@ use lib "$RealBin/../lib";
 use Template;
 
 use ClaphamTechPress::Schema;
-
-my $site_url = 'https://claphamtechpress.com';
+use ClaphamTechPress::IndexPage;
 
 my $tt = Template->new(
   INCLUDE_PATH => 'in',
@@ -24,61 +23,18 @@ my @books = ClaphamTechPress::Schema->get_schema->resultset('Book')->search(
   { order_by => { -desc => 'pubdate' } },
 )->all;
 
-$tt->process('index.tt', { books => \@books, site_url => $site_url }, 'index.html')
+$tt->process('index.tt', { books => \@books, page => ClaphamTechPress::IndexPage->new }, 'index.html')
   or die $tt->error;
 
 make_path('docs/books');
 
-$tt->process('books.tt', { site_url => $site_url }, 'books/index.html')
+$tt->process('books.tt', { }, 'books/index.html')
   or die $tt->error;
 
 for my $book (@books) {
-  make_path("docs/books/" . $book->slug);
+  my $path = 'docs/books/' . $book->slug;
+  make_path($path);
 
-  my $has_blurb = $book->blurb && $book->blurb ne 'xxx';
-  my $book_description = $has_blurb
-    ? $book->blurb
-    : $book->subtitle || $book->title . ' by ' . $book->author->name;
-  my $book_url = $site_url . '/books/' . $book->slug . '/';
-  my $book_image_url = $site_url . '/assets/img/portfolio/fullsize/' . $book->image . '_wide.png';
-  my $book_json_ld = encode_json({
-    '@context'      => 'https://schema.org',
-    '@type'         => 'Book',
-    name            => $book->title,
-    description     => $book_description,
-    url             => $book_url,
-    image           => $book_image_url,
-    author          => {
-      '@type' => 'Person',
-      name    => $book->author->name,
-      ($book->author->website ? (url => $book->author->website) : ()),
-    },
-    publisher       => {
-      '@type' => 'Organization',
-      name    => 'Clapham Technical Press',
-      url     => $site_url . '/',
-    },
-    datePublished   => $book->pubdate->ymd,
-    inLanguage      => 'en',
-    bookFormat      => 'https://schema.org/EBook',
-    ($book->amazon_asin ? (sameAs => [
-      'https://www.amazon.com/dp/' . $book->amazon_asin,
-      'https://www.amazon.co.uk/dp/' . $book->amazon_asin,
-    ]) : ()),
-  });
-  $book_json_ld =~ s{</}{<\\/}g;
-
-  $tt->process(
-    'book.tt',
-    {
-      book             => $book,
-      book_description => $book_description,
-      book_image_url   => $book_image_url,
-      book_json_ld     => $book_json_ld,
-      book_url         => $book_url,
-      has_blurb        => $has_blurb,
-      site_url         => $site_url,
-    },
-    'books/' . $book->slug . '/index.html',
+  $tt->process( 'book.tt', { book => $book, }, "$path/index.html",
   ) or die $tt->error;
 }
