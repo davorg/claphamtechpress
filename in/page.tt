@@ -15,7 +15,7 @@
    brand_href = '/'
 -%]
 [% IF NOT object;
-     THROW object.missing template.name " doesn't pass an object to page.tt.";
+     THROW object.missing template.name _ " doesn't pass an object to page.tt.";
    END -%]
 <!DOCTYPE html>
 <html lang="en">
